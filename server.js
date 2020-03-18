@@ -1,4 +1,4 @@
-const env = require("dotenv");
+require("dotenv").config();
 const express = require("express");
 const jwt = require("express-jwt");
 const jwksRsa = require("jwks-rsa");
@@ -11,8 +11,8 @@ const PORT = process.env.PORT || 3002;
 
 // Set up Auth0 configuration
 const authConfig = {
-  domain: process.env["DOMAIN"],
-  audience: "https://dev-o4x02ucu.auth0.com/api/v2/"
+  domain: process.env.REACT_APP_DOMAIN,
+  audience: process.env.REACT_APP_AUDIENCE
 };
 
 // Define middleware that validates incoming bearer tokens
@@ -22,11 +22,11 @@ const checkJwt = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`
+    jwksUri: `https://${process.env.REACT_APP_DOMAIN}/.well-known/jwks.json`
   }),
 
   audience: authConfig.audience,
-  issuer: `https://${authConfig.domain}/`,
+  issuer: `https://${process.env.REACT_APP_DOMAIN}/`,
   algorithm: ["RS256"]
 });
 
@@ -42,7 +42,7 @@ app.get("/api/external", checkJwt, (req, res) => {
 });
 
 // Start the App & API server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(
     `==> API Server now listening on PORT ${PORT}!`
   );

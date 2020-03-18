@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { Auth0Provider } from "./react-auth0-spa";
-import config from "./auth_config.json";
+// import config from "./auth_config.json";
 import history from "./utils/history";
 
 const onRedirectCallback = appState => {
@@ -16,10 +16,10 @@ const onRedirectCallback = appState => {
 
 ReactDOM.render(
   <Auth0Provider
-    domain={config.domain}
-    client_id={config.clientId}
-    redirect_uri={window.location.origin}
-    audience={config.audience}
+    domain={process.env.REACT_APP_DOMAIN}
+    client_id={process.env.REACT_APP_CLIENT_ID}
+    redirect_uri={`${window.location.origin}/telederm`}
+    audience={process.env.REACT_APP_AUDIENCE}
     onRedirectCallback={onRedirectCallback}
   >
     <div style={{ width: "80%", padding: 15 }}>
