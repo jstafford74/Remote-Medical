@@ -33,9 +33,9 @@ const TeleDerm = ({ handleFormSubmit, values, props }) => {
   //   emailjs
   //     .send(
   //       'gmail',
-  //       'template_5lh5ZqYz',
+  //       'template_id',
   //       parameters,
-  //       'user_Jph9lLQbkZwLwESsROAFg'
+  //       'user_id'
   //     )
   //     .then(
   //       result => {
