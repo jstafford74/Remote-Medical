@@ -22,11 +22,11 @@ const checkJwt = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: `https://${process.env.REACT_APP_DOMAIN}/.well-known/jwks.json`
+    jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`
   }),
 
   audience: authConfig.audience,
-  issuer: `https://${process.env.REACT_APP_DOMAIN}/`,
+  issuer: `https://${authConfig.domain}/`,
   algorithm: ["RS256"]
 });
 
@@ -34,7 +34,7 @@ app.use(morgan("dev"));
 app.use(express.static(join(__dirname, "build")));
 
 // Define an endpoint that must be called with an access token
-app.get("/api/external", checkJwt, (req, res) => {
+app.get("/api/telederm", checkJwt, (req, res) => {
   console.log(req.user);
   res.send({
     msg: "Your Access Token was successfully validated!"

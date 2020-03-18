@@ -29,7 +29,7 @@ const Error = ({ name }) => (
 )
 const required = value => (value ? undefined : 'Required')
 
-const RFFormat = () => {
+const RFFormat = props => {
   return (
     <Container fluid='md'>
       <Card
