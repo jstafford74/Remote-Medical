@@ -1,49 +1,68 @@
 require("dotenv").config();
+const db = require("./models");
+const mongoose = require("mongoose");
+const routes = require("./routes");
 const express = require("express");
-const jwt = require("express-jwt");
-const jwksRsa = require("jwks-rsa");
-const morgan = require("morgan");
-const { join } = require("path");
+const { join } = require('path');
+const morgan = require('morgan');
+const passport = require('passport');
 
-// Create a new Express app
+
 const app = express();
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3001;
 
-// Set up Auth0 configuration
-const authConfig = {
-  domain: process.env.REACT_APP_DOMAIN,
-  audience: process.env.REACT_APP_AUDIENCE
-};
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(passport.initialize());
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+// Add routes, both API and view
+app.use(routes);
 
-// Define middleware that validates incoming bearer tokens
-// using JWKS from dev-tx3jfmgg.auth0.com
-const checkJwt = jwt({
-  secret: jwksRsa.expressJwtSecret({
-    cache: true,
-    rateLimit: true,
-    jwksRequestsPerMinute: 5,
-    jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`
-  }),
 
-  audience: authConfig.audience,
-  issuer: `https://${authConfig.domain}/`,
-  algorithm: ["RS256"]
-});
+if (app.get('env') === 'production') {
+  // Use secure cookies in production (requires SSL/TLS)
+  sess.cookie.secure = true;
+  app.set('trust proxy', 1);
+}
 
 app.use(morgan("dev"));
-app.use(express.static(join(__dirname, "build")));
 
-// Define an endpoint that must be called with an access token
-app.get("/api/telederm", checkJwt, (req, res) => {
-  console.log(req.user);
-  res.send({
-    msg: "Your Access Token was successfully validated!"
-  });
-});
+async function startUp() {
+  mongoose.connect(process.env.MONGODB_URI,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true
+    })
+    .catch(error => handleError(error));
+  mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
+  mongoose.connection.once('open', async function () {
+    console.log('-----------------Connected to MongoDB----------------------')
 
-// Start the App & API server
-app.listen(PORT, function () {
-  console.log(
-    `==> API Server now listening on PORT ${PORT}!`
-  );
-});
+    app.listen(PORT, function () {
+      console.log(
+        `==> API Server now listening on PORT ${PORT}!`
+      );
+
+    })
+
+    // try {
+    //   await db.List.create({
+    //     patient_ID: '10000',
+    //     patient_Number: '74000',
+    //     patient_FirstName: 'Jeremiah',
+    //     patient_LastName: 'Stafford',
+    //     pPInfo_DOB_month: '1974-07-01',
+    //     pPInfo_Email: 'jeremiah.b.stafford@gmail.com'
+    //   }, function (err, obj) {
+    //     if (err) return console.log(err);
+    //     else { console.log(obj + 'created') }// saved!
+    //   })
+    // } catch (err) { console.log(err) }
+  })
+}  // Start the App & API server
+
+startUp();

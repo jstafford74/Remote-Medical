@@ -11,16 +11,16 @@ module.exports = {
       if (preExistingUser) {
         res.status(200).json({
           success: false,
-          errors: {username: 'Username already exists'}
+          errors: { username: 'Username already exists' }
         });
         return;
       }
-      
+
       preExistingUser = await db.User.findOne({ email: req.body.email });
       if (preExistingUser) {
         res.status(200).json({
           success: false,
-          errors: {email: 'Email already exists'}
+          errors: { email: 'Email already exists' }
         });
         return;
       }
@@ -43,7 +43,7 @@ module.exports = {
       if (!user) {
         res.status(200).json({
           success: false,
-          errors: {username: 'User not found'}
+          errors: { username: 'User not found' }
         });
         return;
       }
@@ -58,16 +58,43 @@ module.exports = {
       } else {
         res.status(200).json({
           sucess: false,
-          errors: {password: 'Password is not valid'}
+          errors: { password: 'Password is not valid' }
         });
       }
 
     } catch (error) {
       respondWithServerError(res, error);
     }
+  },
+  checkAcct: function (req, res) {
+    db.List.find({
+      patient_FirstName: req.params.FirstName,
+      patient_LastName: req.params.LastName,
+      pPInfo_DOB_month: req.params.DOB,
+      pPInfo_Email: req.params.email,
+    }).then(user => {
+      if (!user) {
+        res.status(200).json({
+          success: false,
+          errors: { email: 'Name, DOB or Email not found' }
+        });
+        return;
+      } else if (user.length == 1) {
+        res.json(user)
+      }
+      else if (user.length > 1) {
+        let realUser = [];
+        user.forEach(it => {
+          Number(it.patient_Number) ?
+            realUser.push(it) : null
+        })
+        res.json(realUser)
+        console.log(realUser)
+      }
+    })
+      .catch(err => res.status(422).json(err));
   }
-};
-
+}
 
 function respondWithServerError(res, error) {
   res.status(500).json({

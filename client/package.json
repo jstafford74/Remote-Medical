@@ -1,0 +1,49 @@
+{
+  "name": "mern",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:3001/",
+  "dependencies": {
+    "@auth0/auth0-spa-js": "^1.6.4",
+    "@fortawesome/fontawesome-svg-core": "^1.2.27",
+    "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "@fortawesome/react-fontawesome": "^0.1.9",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "auth0-lock": "^11.22.4",
+    "axios": "^0.19.0",
+    "emailjs-com": "^2.4.1",
+    "final-form": "^4.18.7",
+    "format-string-by-pattern": "^1.2.1",
+    "highlight.js": "^9.18.1",
+    "if-env": "^1.0.4",
+    "jwt-jot": "^1.2.3",
+    "react": "^16.13.0",
+    "react-bootstrap": "^1.0.0-beta.17",
+    "react-dom": "^16.13.0",
+    "react-dropzone": "^10.2.1",
+    "react-final-form": "^6.3.5",
+    "react-helmet": "^5.2.1",
+    "react-redux": "^6.0.0",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "3.0.1",
+    "redux": "^4.0.4",
+    "redux-form": "^8.2.6"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "react-devtools": "^4.4.0"
+  }
+}
