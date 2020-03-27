@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const tdermRoutes = require("./tderm");
+const tdermRoutes = require("./tmed");
 const userRoutes = require("./user");
 
 // Book routes
