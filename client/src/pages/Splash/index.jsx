@@ -106,7 +106,7 @@ export default function Splash (props) {
           but is recommended to last no longer than 30 minutes.{' '}
         </h5>
         <hr />
-        <Link to='/demo'>
+        <Link to='/rmt'>
           <Button className='btn btn-lg btn-danger'>Demo RMT</Button>
         </Link>
       </Jumbotron>

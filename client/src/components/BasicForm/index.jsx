@@ -29,8 +29,6 @@ var lock = new Auth0LockPasswordless(
   options
 )
 
-export const BasicContext = React.createContext()
-
 const Style = {
   label: {
     marginRight: '10px',
@@ -51,9 +49,14 @@ function BasicForm (props) {
   const [error, setError] = useState('No Error')
 
   const onSubmit = values => {
-    API.acctCheck(values.FirstName, values.LastName, values.email, values.DOB)
+    API.acctCheck(
+      values.FirstName.toLowerCase(),
+      values.LastName.toLowerCase(),
+      values.email,
+      values.DOB
+    )
       .then(response => {
-        response.pPInfo_Email
+        response.patient_Email
           ? setUser(response) && setError('')
           : setMsg('User Not Found. Would You Like To Sign Up?')
       })
@@ -93,142 +96,136 @@ function BasicForm (props) {
                   <fieldset>
                     <Card.Body>
                       <h2 className='text-muted'>Verify Email</h2>
-                      <Card.Text>
-                        <ListGroup variant='flush'>
-                          <ListGroup.Item id='FirstName' className='px-1'>
-                            <Field name='FirstName' validate={required}>
-                              {({ input, meta }) => (
-                                <InputGroup className='my-2 border rounded border-info'>
-                                  {meta.touched && meta.error ? (
-                                    <InputGroup.Prepend>
-                                      <InputGroup.Text
-                                        style={{
-                                          backgroundColor: 'gray',
-                                          color: 'red'
-                                        }}
-                                        id='basic-addon1'
-                                      >
-                                        {meta.error}
-                                      </InputGroup.Text>
-                                    </InputGroup.Prepend>
-                                  ) : (
-                                    <InputGroup.Prepend>
-                                      <InputGroup.Text id='basic-addon1'>
-                                        First Name
-                                      </InputGroup.Text>
-                                    </InputGroup.Prepend>
-                                  )}
 
-                                  <FormB.Control
-                                    {...input}
-                                    size='lg'
-                                    placeholder='First Name'
-                                  />
-                                </InputGroup>
-                              )}
-                            </Field>
-                          </ListGroup.Item>
-                          <ListGroup.Item id='LastName' className='px-1'>
-                            <Field name='LastName' validate={required}>
-                              {({ input, meta }) => (
-                                <InputGroup className='my-2 border rounded border-info'>
-                                  {meta.touched && meta.error ? (
-                                    <InputGroup.Prepend>
-                                      <InputGroup.Text
-                                        style={{
-                                          backgroundColor: 'gray',
-                                          color: 'red'
-                                        }}
-                                        id='basic-addon1'
-                                      >
-                                        {meta.error}
-                                      </InputGroup.Text>
-                                    </InputGroup.Prepend>
-                                  ) : (
-                                    <InputGroup.Prepend>
-                                      <InputGroup.Text id='basic-addon1'>
-                                        Last Name
-                                      </InputGroup.Text>
-                                    </InputGroup.Prepend>
-                                  )}
-                                  <FormB.Control
-                                    {...input}
-                                    size='lg'
-                                    placeholder='Last Name'
-                                  />
-                                </InputGroup>
-                              )}
-                            </Field>
-                          </ListGroup.Item>
-                          <ListGroup.Item id='email' className='px-1'>
-                            <Field name='email' validate={required}>
-                              {({ input, meta }) => (
-                                <InputGroup className='my-2 border rounded border-info'>
-                                  {meta.touched && meta.error ? (
-                                    <InputGroup.Prepend>
-                                      <InputGroup.Text
-                                        style={{
-                                          backgroundColor: 'gray',
-                                          color: 'red'
-                                        }}
-                                        id='basic-addon1'
-                                      >
-                                        {meta.error}
-                                      </InputGroup.Text>
-                                    </InputGroup.Prepend>
-                                  ) : null}
-                                  <FormB.Control
-                                    {...input}
-                                    size='lg'
-                                    placeholder='Email'
-                                  />
-                                  <InputGroup.Append>
-                                    <InputGroup.Text id='basic-addon2'>
-                                      @gmail.com
+                      <ListGroup variant='flush'>
+                        <ListGroup.Item id='FirstName' className='px-1'>
+                          <Field name='FirstName' validate={required}>
+                            {({ input, meta }) => (
+                              <InputGroup className='my-2 border rounded border-info'>
+                                {meta.touched && meta.error ? (
+                                  <InputGroup.Prepend>
+                                    <InputGroup.Text
+                                      style={{
+                                        backgroundColor: 'gray',
+                                        color: 'red'
+                                      }}
+                                      id='basic-addon1'
+                                    >
+                                      {meta.error}
                                     </InputGroup.Text>
-                                  </InputGroup.Append>
-                                </InputGroup>
-                              )}
-                            </Field>
-                          </ListGroup.Item>
-                          <ListGroup.Item id='DOB' className='px-1'>
-                            <Field
-                              name='DOB'
-                              validate={required}
-                              parse={formatString('YYYY-MM-DD')}
-                            >
-                              {({ input, meta }) => (
-                                <InputGroup className='my-2 border rounded border-info'>
-                                  {meta.touched && meta.error ? (
-                                    <InputGroup.Prepend>
-                                      <InputGroup.Text
-                                        style={{
-                                          backgroundColor: 'gray',
-                                          color: 'red'
-                                        }}
-                                        id='basic-addon1'
-                                      >
-                                        {meta.error}
-                                      </InputGroup.Text>
-                                    </InputGroup.Prepend>
-                                  ) : (
-                                    <InputGroup.Prepend>
-                                      <InputGroup.Text id='basic-addon1'>
-                                        D.O.B.
-                                      </InputGroup.Text>
-                                    </InputGroup.Prepend>
-                                  )}
-                                  <FormB.Control
-                                    {...input}
-                                    placeholder='YYYY-MM-DD'
-                                    size='lg'
-                                  />
-                                </InputGroup>
-                              )}
-                            </Field>
-                          </ListGroup.Item>
-                        </ListGroup>
-                      </Card.Text>
+                                  </InputGroup.Prepend>
+                                ) : (
+                                  <InputGroup.Prepend>
+                                    <InputGroup.Text id='basic-addon1'>
+                                      First Name
+                                    </InputGroup.Text>
+                                  </InputGroup.Prepend>
+                                )}
+
+                                <FormB.Control
+                                  {...input}
+                                  size='lg'
+                                  placeholder='First Name'
+                                />
+                              </InputGroup>
+                            )}
+                          </Field>
+                        </ListGroup.Item>
+                        <ListGroup.Item id='LastName' className='px-1'>
+                          <Field name='LastName' validate={required}>
+                            {({ input, meta }) => (
+                              <InputGroup className='my-2 border rounded border-info'>
+                                {meta.touched && meta.error ? (
+                                  <InputGroup.Prepend>
+                                    <InputGroup.Text
+                                      style={{
+                                        backgroundColor: 'gray',
+                                        color: 'red'
+                                      }}
+                                      id='basic-addon1'
+                                    >
+                                      {meta.error}
+                                    </InputGroup.Text>
+                                  </InputGroup.Prepend>
+                                ) : (
+                                  <InputGroup.Prepend>
+                                    <InputGroup.Text id='basic-addon1'>
+                                      Last Name
+                                    </InputGroup.Text>
+                                  </InputGroup.Prepend>
+                                )}
+                                <FormB.Control
+                                  {...input}
+                                  size='lg'
+                                  placeholder='Last Name'
+                                />
+                              </InputGroup>
+                            )}
+                          </Field>
+                        </ListGroup.Item>
+                        <ListGroup.Item id='email' className='px-1'>
+                          <Field name='email' validate={required}>
+                            {({ input, meta }) => (
+                              <InputGroup className='my-2 border rounded border-info'>
+                                {meta.touched && meta.error ? (
+                                  <InputGroup.Prepend>
+                                    <InputGroup.Text
+                                      style={{
+                                        backgroundColor: 'gray',
+                                        color: 'red'
+                                      }}
+                                      id='basic-addon1'
+                                    >
+                                      {meta.error}
+                                    </InputGroup.Text>
+                                  </InputGroup.Prepend>
+                                ) : null}
+                                <FormB.Control
+                                  {...input}
+                                  size='lg'
+                                  placeholder='Email'
+                                />
+                              </InputGroup>
+                            )}
+                          </Field>
+                        </ListGroup.Item>
+                        <ListGroup.Item id='DOB' className='px-1'>
+                          <Field
+                            name='DOB'
+                            validate={required}
+                            parse={formatString('YYYY-MM-DD')}
+                          >
+                            {({ input, meta }) => (
+                              <InputGroup className='my-2 border rounded border-info'>
+                                {meta.touched && meta.error ? (
+                                  <InputGroup.Prepend>
+                                    <InputGroup.Text
+                                      style={{
+                                        backgroundColor: 'gray',
+                                        color: 'red'
+                                      }}
+                                      id='basic-addon1'
+                                    >
+                                      {meta.error}
+                                    </InputGroup.Text>
+                                  </InputGroup.Prepend>
+                                ) : (
+                                  <InputGroup.Prepend>
+                                    <InputGroup.Text id='basic-addon1'>
+                                      D.O.B.
+                                    </InputGroup.Text>
+                                  </InputGroup.Prepend>
+                                )}
+                                <FormB.Control
+                                  {...input}
+                                  placeholder='YYYY-MM-DD'
+                                  size='lg'
+                                />
+                              </InputGroup>
+                            )}
+                          </Field>
+                        </ListGroup.Item>
+                      </ListGroup>
                     </Card.Body>
                     <Card.Footer>
                       <Button
@@ -241,6 +238,7 @@ function BasicForm (props) {
                         Submit
                       </Button>
                     </Card.Footer>
+                    <pre>{JSON.stringify(values)}</pre>
                   </fieldset>
                 </form>
               )}
