@@ -1,7 +1,6 @@
 const db = require("../models");
 console.log(db);
 
-// Defining methods for the authController
 module.exports = {
   checkAcct: function (req, res) {
     console.log(req.params)
