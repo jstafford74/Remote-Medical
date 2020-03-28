@@ -13,18 +13,6 @@ import { Form, Field } from 'react-final-form'
 import formatString from 'format-string-by-pattern'
 import API from '../../utils/API'
 
-const Style = {
-  label: {
-    marginRight: '10px',
-    display: 'flex',
-
-    textAlign: 'right'
-  },
-  input: {
-    marginTop: '15px'
-  }
-}
-
 function BasicForm (props) {
   const required = value => (value ? undefined : 'Required')
 

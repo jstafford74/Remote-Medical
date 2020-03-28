@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Button, Container, Jumbotron } from 'react-bootstrap'
+import { Container, Jumbotron } from 'react-bootstrap'
 import RFFormat from '../../components/SimpleForm'
 import CircleLogo from '../../components/CircleLogo'
 
