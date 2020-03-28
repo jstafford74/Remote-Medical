@@ -9,7 +9,7 @@ const db = require("../models");
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 
-const demoUserSeed = [
+const demoListSeed = [
     {
         patient_ID: "20000",
         patient_MRN: "75000",
