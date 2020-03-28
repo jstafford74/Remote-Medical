@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
-import { Button, Row, Col, Container, Jumbotron } from 'react-bootstrap'
-// import { Link } from 'react-router-dom'
+import { Button, Container, Jumbotron } from 'react-bootstrap'
 import RFFormat from '../../components/SimpleForm'
 import CircleLogo from '../../components/CircleLogo'
 

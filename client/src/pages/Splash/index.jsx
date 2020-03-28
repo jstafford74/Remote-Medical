@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { Button, Row, Col, Container, Jumbotron } from 'react-bootstrap'
+import React from 'react'
+import { Button, Container, Jumbotron } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-
-import BasicForm from '../../components/BasicForm'
-import RFFormat from '../../components/SimpleForm'
-// import API from '../../utils/API'
 
 const Style = {
   header: {

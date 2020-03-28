@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDropzone } from "react-dropzone";
-import { InputGroup, Button } from "react-bootstrap";
 
 const Dropzone = ({ props }) => {
     const { getRootProps, getInputProps, acceptedFiles } = useDropzone({ noClick: true });

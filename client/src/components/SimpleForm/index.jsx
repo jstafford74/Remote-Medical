@@ -12,34 +12,9 @@ import { Form as FormB } from 'react-bootstrap'
 import { Form, Field } from 'react-final-form'
 import formatString from 'format-string-by-pattern'
 import Dropzone from './DropZone'
-import emailjs from 'emailjs-com'
+
 import { useDropzone } from 'react-dropzone'
 
-const onFormSubmit = values => {
-  emailjs
-    .sendForm(
-      'sendgrid',
-      'template_5lh5ZqYz',
-      values,
-      'user_Jph9lLQbkZwLwESsROAFg'
-    )
-    .then(
-      result => {
-        console.log(result.text)
-      },
-      error => {
-        console.log(error.text)
-      }
-    )
-}
-
-const Error = ({ name }) => (
-  <Field name={name}>
-    {({ meta: { touched, error } }) =>
-      touched && error ? <span valid={!error}>{error}</span> : null
-    }
-  </Field>
-)
 const required = value => (value ? undefined : 'Required')
 
 const RFFormat = props => {
@@ -54,7 +29,6 @@ const RFFormat = props => {
           Remote Treatment Form
         </Card.Header>
         <Form
-          onSubmit={onFormSubmit}
           initialValues={{}}
           render={({ handleSubmit, form, submitting, pristine, values }) => (
             <form onSubmit={handleSubmit}>

@@ -12,22 +12,6 @@ import { Form as FormB } from 'react-bootstrap'
 import { Form, Field } from 'react-final-form'
 import formatString from 'format-string-by-pattern'
 import API from '../../utils/API'
-import { Auth0LockPasswordless } from 'auth0-lock'
-
-var options = {
-  closable: false,
-  allowedConnections: ['email'],
-  passwordlessMethod: 'link',
-  auth: {
-    redirectUrl: 'http://localhost:3000/telederm'
-  }
-}
-
-var lock = new Auth0LockPasswordless(
-  'k05C8Hewa6uoQQIt5OvDlEKhqbErzmre',
-  'dev-o4x02ucu.auth0.com',
-  options
-)
 
 const Style = {
   label: {
@@ -56,7 +40,7 @@ function BasicForm (props) {
       values.DOB
     )
       .then(response => {
-        response.patient_Email
+        response[0].patient_Email
           ? setUser(response) && setError('')
           : setMsg('User Not Found. Would You Like To Sign Up?')
       })
