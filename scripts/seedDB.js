@@ -44,3 +44,5 @@ async function seed() {
         process.exit(1);
     }
 }
+
+seed();
