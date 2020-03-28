@@ -22,11 +22,11 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 
-if (app.get('env') === 'production') {
-  // Use secure cookies in production (requires SSL/TLS)
-  sess.cookie.secure = true;
-  app.set('trust proxy', 1);
-}
+// if (app.get('env') === 'production') {
+//   // Use secure cookies in production (requires SSL/TLS)
+//   // sess.cookie.secure = true;
+//   // app.set('trust proxy', 1);
+// }
 
 app.use(morgan("dev"));
 
