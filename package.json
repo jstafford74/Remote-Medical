@@ -19,6 +19,7 @@
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
+    "concurrently": "^5.0.2",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "emailjs": "^2.2.0",
@@ -43,14 +44,17 @@
     "randomstring": "^1.1.5"
   },
   "devDependencies": {
-    "concurrently": "^5.0.2",
     "nodemon": "^2.0.2"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
