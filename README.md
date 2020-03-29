@@ -11,7 +11,17 @@ Typical regular  doctor visits are currently at a slow crawl or standstill.  Bot
 
 ## What it does
 ### Main flow:
-Remote Medical Treatment[RMT] will leverage a MongoDB architecture that focuses on simplicity, scalability and performance.  Utilizing Auth-0 passwordless login, [RMT]  Once authorized(existing minimal db ,first authorizes the user against an existing minimal db(of first,last,dob & email).  Once authorized to use passwordless credentials, a secure JWT encrypted password link will be sent to the user's email or cell phone, from where they can simply click on the link to be redirected to a very simple pre-populated form.  Because the patient is already known to the doctor, the more confidential patient information remains with the doctor and is simply embedded or referenced to the smaller authorization DB provided to [RMT].  Along with the already information provided at authorization there will be an additional 2 fields, one for a message to the clinical staff and another for at least one image.  Upon form submission the non-image information is sent via email to the doctor and full form payload, including the image(s) is stored in a DB.
+Remote Medical Treatment[RMT] will leverage a MongoDB architecture that focuses on simplicity, scalability and performance. 
+
+#### Stage 1: Doctor Submits Minimal Patient List
+
+Doctor Schema = {first:<string>,last:<string>,zip:<string>,email:<string>,phone:<string>, specialty:<string>}
+
+Patient Schema = {first:<string>,last:<string>,zip:<integer>,email:<string>,phone:<string>,doctor_id:{type:ObjectId,ref:'Doctors'}
+  
+#### Stage 2: Patients Notified
+
+Utilizing Auth-0 passwordless login, [RMT]  Once authorized(existing minimal db ,first authorizes the user against an existing minimal db(of first,last,dob & email).  Once authorized to use passwordless credentials, a secure JWT encrypted password link will be sent to the user's email or cell phone, from where they can simply click on the link to be redirected to a very simple pre-populated form.  Because the patient is already known to the doctor, the more confidential patient information remains with the doctor and is simply embedded or referenced to the smaller authorization DB provided to [RMT].  Along with the already information provided at authorization there will be an additional 2 fields, one for a message to the clinical staff and another for at least one image.  Upon form submission the non-image information is sent via email to the doctor and full form payload, including the image(s) is stored in a DB.
 
 ### Sign Up Flow:
 If the patient is unknown to a particular doctor that they want to see, information can be submitted and handled by office staff, at this stage, by the doctor's office.  This application has a dual purpose of bridging the gap between high risk/cautious patients that are missing out on regular appointments and preserving doctor schedules during a time when face to face visits are dramatially reduced.
