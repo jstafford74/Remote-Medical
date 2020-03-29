@@ -2,7 +2,7 @@ const options = {
     allowedConnections: ['email'],
     passwordlessMethod: 'link',
     auth: {
-        redirectUrl: 'http://localhost:3000/telemed',
+        redirectUrl: 'https://remote-medical.herokuapp.com/telemed',
         params: {
             scope: 'openid profile email'
         }
