@@ -16,15 +16,7 @@ const Style = {
 }
 
 export default function Splash (props) {
-  // // useEffect(() => {
-  //   lock.show()
-  //   lock.on('authenticated', function (authResult) {
-  //     setLoggedIn(true)
-  //     setToken(authResult.accessToken)
-  //     alert(token)
-  //   })
-  // }, [token])
-
+  
   return (
     <Container fluid='md sm' className='text-center'>
       <Jumbotron id='main'>
@@ -38,7 +30,6 @@ export default function Splash (props) {
         <h3 style={{ color: 'red' }}>
           <i className='fas fa-star-of-life fa-2x'></i>
         </h3>
-        <i style={{ color: 'red' }} className='fas fa-star-of-life fa-2x'></i>
         <hr />
         <h4 className='font-weight-bold'>
           Welcome to Remote Medical Treatment

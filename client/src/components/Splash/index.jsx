@@ -25,10 +25,7 @@ export default function Splash (props) {
         <h3>
           <i class='fas fa-user-md fa-7x'></i>
         </h3> */}
-        <h3 style={{ color: 'red' }}>
-          <i className='fas fa-star-of-life fa-7x'></i>
-        </h3>
-
+  
         <hr />
         <h4 className='font-weight-bold'>Image File Uploader</h4>
         <hr />
