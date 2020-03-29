@@ -18,7 +18,7 @@ class App extends Component {
             <Route exact path="/" component={Splash} />
             <Route exact path="/rmt" component={Demo} />
             <Route path="/telederm" component={TeleDerm} />
-            <Route path="/images" component={ImageDemo} />
+            <Route path="/rmt/images" component={ImageDemo} />
           </Switch>
         </Router>
       </div>  

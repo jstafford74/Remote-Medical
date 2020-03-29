@@ -4,18 +4,15 @@ const path = require('path');
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 
-
 // Defining methods for the authController
 module.exports = {
     submitImage: () => {
         upload.single("file"), (req, res, next) => {
             console.log("Request ---", req.body);
             console.log("Request file ---", req.file);
-
             res.json()
         }
     },
-
 
     getImages: (req, res) => {
         gfs.files.find().toArray((err, files) => {
