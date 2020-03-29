@@ -36,8 +36,8 @@ function BasicForm (props) {
       values.DOB
     )
 
-    console.log(response[0].patient_Email)
     if (response[0].patient_Email) {
+      console.log(response[0].patient_Email)
       setUser(true)
       lock.show()
     } else {
