@@ -19,7 +19,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Splash} />
           <Route exact path="/rmt" component={Demo} />
-          <Route path="/telederm" component={TeleDerm} />
+          {/* <Route path="/telederm" component={TeleDerm} />  */}
         </Switch>
       </Router>
     </div>

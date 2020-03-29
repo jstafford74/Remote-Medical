@@ -37,7 +37,7 @@ export default function Splash (props) {
         <h3 style={{ color: 'red' }}>
           <i className='fas fa-star-of-life fa-7x'></i>
         </h3>
-
+        <i style={{ color: 'red' }} className='fas fa-star-of-life fa-2x'></i>
         <hr />
         <h4 className='font-weight-bold'>
           Welcome to Remote Medical Treatment

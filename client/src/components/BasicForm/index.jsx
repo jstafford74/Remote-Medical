@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Container,
   Row,
@@ -11,6 +11,8 @@ import {
 import { Form as FormB } from 'react-bootstrap'
 import { Form, Field } from 'react-final-form'
 import formatString from 'format-string-by-pattern'
+import options from '../../options'
+import { Auth0LockPasswordless } from 'auth0-lock'
 import API from '../../utils/API'
 
 function BasicForm (props) {
@@ -20,25 +22,41 @@ function BasicForm (props) {
   const [msg, setMsg] = useState('Please Enter Basic Information')
   const [error, setError] = useState('No Error')
 
-  const onSubmit = values => {
-    API.acctCheck(
+  const lock = new Auth0LockPasswordless(
+    'Dq0j1ihisEKjWAQHv9gmgkhV8qxKFA7I',
+    'dev-jyxuwhal.auth0.com',
+    options
+  )
+
+  const onSubmit = async values => {
+    const response = await API.acctCheck(
       values.FirstName.toLowerCase(),
       values.LastName.toLowerCase(),
       values.email,
       values.DOB
     )
-      .then(response => {
-        response[0].patient_Email
-          ? setUser(response) && setError('')
-          : setMsg('User Not Found. Would You Like To Sign Up?')
-      })
-      .catch(error => {
-        console.log(error)
-        setUser(false)
-        setError('Check Credentials')
-        setMsg('In Catch Error')
-      })
+
+    console.log(response[0].patient_Email)
+    if (response[0].patient_Email) {
+      setUser(true)
+      lock.show()
+    } else {
+      setMsg('User Not Found. Would You Like To Sign Up?')
+    }
   }
+  useEffect(() => {
+    if (user === false) {
+      console.log(options)
+      console.log(lock)
+    }
+    //     lock.on('authenticated', function (authResult) {
+    //       console.log(authResult.accessToken)
+    //     })
+    //   } else {
+    //     return
+    //   }
+  }, [user])
+
   return (
     <Container fluid>
       <Row>
@@ -239,6 +257,12 @@ function BasicForm (props) {
 
           <h4 className='text-left'>
             Error: {error ? <span className='text-left'>{error}</span> : null}
+          </h4>
+          <h4 className='text-left'>
+            User:{' '}
+            {user == true ? (
+              <span className='text-left'>Authenticating</span>
+            ) : null}
           </h4>
         </Col>
       </Row>
