@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import {
   Container,
   Row,
@@ -18,10 +18,6 @@ import API from '../../utils/API'
 function BasicForm (props) {
   const required = value => (value ? undefined : 'Required')
 
-  const [user, setUser] = useState(false)
-  const [msg, setMsg] = useState('Please Enter Basic Information')
-  const [error, setError] = useState('No Error')
-
   const lock = new Auth0LockPasswordless(
     'Dq0j1ihisEKjWAQHv9gmgkhV8qxKFA7I',
     'dev-jyxuwhal.auth0.com',
@@ -38,24 +34,11 @@ function BasicForm (props) {
 
     if (response[0].patient_Email) {
       console.log(response[0].patient_Email)
-      setUser(true)
       lock.show()
     } else {
-      setMsg('User Not Found. Would You Like To Sign Up?')
+      alert('User Not Found. Would You Like To Sign Up?')
     }
   }
-  useEffect(() => {
-    if (user === false) {
-      console.log(options)
-      console.log(lock)
-    }
-    //     lock.on('authenticated', function (authResult) {
-    //       console.log(authResult.accessToken)
-    //     })
-    //   } else {
-    //     return
-    //   }
-  }, [user])
 
   return (
     <Container fluid>
@@ -234,36 +217,6 @@ function BasicForm (props) {
               )}
             />
           </Card>
-        </Col>
-        <Col md={4}>
-          <h4 className='text-left'>
-            Response:
-            {user ? (
-              <div>
-                {' '}
-                <span className='text-left'>{user.patient_ID}</span>
-                <span className='text-left'>{user.patient_Number}</span>
-                <span className='text-left'>{user.pPInfo_FirstName}</span>
-                <span className='text-left'>{user.pPInfo_LastName}</span>
-                <span className='text-left'>{user.pPInfo_DOB_month}</span>
-                <span className='text-left'>{user.pPInfo_Email}</span>
-              </div>
-            ) : null}
-          </h4>
-
-          <h4 className='text-left'>
-            Message: {msg ? <span className='text-left'>{msg}</span> : null}
-          </h4>
-
-          <h4 className='text-left'>
-            Error: {error ? <span className='text-left'>{error}</span> : null}
-          </h4>
-          <h4 className='text-left'>
-            User:{' '}
-            {user == true ? (
-              <span className='text-left'>Authenticating</span>
-            ) : null}
-          </h4>
         </Col>
       </Row>
       <hr />

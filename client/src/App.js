@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import StickyNav from "./components/StickyNav";
 import Splash from "./pages/Splash";
 import Demo from "./pages/Demo";
-import TeleDerm from "./pages/TeleDerm";
+import TeleMed from "./pages/TeleMed";
 
 
 const App = () => {
@@ -19,7 +19,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Splash} />
           <Route exact path="/rmt" component={Demo} />
-          {/* <Route path="/telederm" component={TeleDerm} />  */}
+          <Route path="/telemed" component={TeleMed} />
         </Switch>
       </Router>
     </div>
