@@ -1,12 +1,13 @@
-import React from 'react'
-import { Button, Container, Jumbotron } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Button, Container, Jumbotron } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import './style.css';
 
 const Style = {
   header: {
     letterSpacing: '.75rem',
     textAlign: 'center',
-    fontSize: '4rem'
+    fontSize: '3rem'
   },
 
   button: {
@@ -25,7 +26,7 @@ export default function Splash (props) {
   // }, [token])
 
   return (
-    <Container fluid='md' className='text-center'>
+    <Container fluid='md sm' className='text-center'>
       <Jumbotron id='main'>
         <h1 style={Style.header}>Remote Medical </h1>
         {/* <h3>
@@ -35,7 +36,7 @@ export default function Splash (props) {
           <i class='fas fa-user-md fa-7x'></i>
         </h3> */}
         <h3 style={{ color: 'red' }}>
-          <i className='fas fa-star-of-life fa-7x'></i>
+          <i className='fas fa-star-of-life fa-2x'></i>
         </h3>
 
         <hr />
@@ -44,8 +45,8 @@ export default function Splash (props) {
         </h4>
         <hr />
         <h5 className='text-left'>
-          This web portal as created in direct reponse to the 2020 outbreak of
-          covid-19. As social distancing has become the norm and the number of
+          This web portal is created in direct reponse to the 2020 outbreak of
+          covid-19. As social distancing has become the new norm and the number of
           confirmed covid-19 cases in the United States accelerate, I decided to
           augment an existing offsite medical treatment project with both
           authorized and authenticated login procedures that incorporate a
@@ -56,15 +57,15 @@ export default function Splash (props) {
         <hr />
         <h4 className='font-weight-bold'>How Does it Work?</h4>
         <h5 className='text-left'>
-          This is a simple & secure bilateral communication between a patient
-          and dpctor. The office that provides medical treatment will supply a
+          This is a simple & secure bilateral communication app between a patient
+          and doctor. The office that provides medical treatment will supply a
           minimal 'authorized for medical treatment' database that includes
           first, last, email and DOB for each potential remote patient. The
           patient upon visiting the site will be asked to provide this basic
           information. If the patient exists in the database, they will be sent
           an encrpted password link that directs them to a brief questionaire.
           Along with the aforementioned basic information, notes about the
-          nature of their complaint and a picture can be provided and securely
+          nature of their complaint and images can be provided and securely
           sent to the doctor's office.
         </h5>
         <hr />
@@ -103,7 +104,7 @@ export default function Splash (props) {
         </h5>
         <hr />
         <Link to='/rmt'>
-          <Button className='btn btn-lg btn-danger'>Demo RMT</Button>
+          <Button className='btn btn-lg btn-info'>Demo RMT</Button>
         </Link>
       </Jumbotron>
       {/* {loggedIn ? <RFFormat /> : null} */}

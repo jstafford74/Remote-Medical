@@ -8,10 +8,10 @@ const authRoutes = require("./auth");
 router.use("/auth", authRoutes);
 router.use("/protected", passport.authenticate('jwt', { session: false }), protectedRoutes);
 
-router.route("/imagez")
+router.route("/images")
     .post(imageController.submitImage)
     .get(imageController.getImages)
 // .delete(imageController.deleteImage);
-router.route("/imagez/:filename")
+router.route("/images/:filename")
     .get(imageController.getImage);
 module.exports = router;

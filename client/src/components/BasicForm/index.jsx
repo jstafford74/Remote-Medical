@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   Container,
   Row,
@@ -11,33 +11,32 @@ import {
 import { Form as FormB } from 'react-bootstrap'
 import { Form, Field } from 'react-final-form'
 import formatString from 'format-string-by-pattern'
+import options from '../../options'
+import { Auth0LockPasswordless } from 'auth0-lock'
 import API from '../../utils/API'
-
+  
 function BasicForm (props) {
   const required = value => (value ? undefined : 'Required')
 
-  const [user, setUser] = useState(false)
-  const [msg, setMsg] = useState('Please Enter Basic Information')
-  const [error, setError] = useState('No Error')
+  const lock = new Auth0LockPasswordless(
+    'Dq0j1ihisEKjWAQHv9gmgkhV8qxKFA7I',
+    'dev-jyxuwhal.auth0.com',
+    options
+  )
 
-  const onSubmit = values => {
-    API.acctCheck(
+  const onSubmit = async values => {
+    const response = await API.acctCheck(
       values.FirstName.toLowerCase(),
       values.LastName.toLowerCase(),
       values.email,
       values.DOB
     )
-      .then(response => {
-        response[0].patient_Email
-          ? setUser(response) && setError('')
-          : setMsg('User Not Found. Would You Like To Sign Up?')
-      })
-      .catch(error => {
-        console.log(error)
-        setUser(false)
-        setError('Check Credentials')
-        setMsg('In Catch Error')
-      })
+    if (response[0].patient_Email) {
+      console.log(response[0].patient_Email)
+      lock.show()
+    } else {
+      alert('User Not Found. Would You Like To Sign Up?')
+    }
   }
   return (
     <Container fluid>
@@ -67,7 +66,7 @@ function BasicForm (props) {
                 <form onSubmit={handleSubmit}>
                   <fieldset>
                     <Card.Body>
-                      <h2 className='text-muted'>Verify Email</h2>
+                      <h2 className='text-muted'>Verify Information</h2>
 
                       <ListGroup variant='flush'>
                         <ListGroup.Item id='FirstName' className='px-1'>
@@ -216,30 +215,6 @@ function BasicForm (props) {
               )}
             />
           </Card>
-        </Col>
-        <Col md={4}>
-          <h4 className='text-left'>
-            Response:
-            {user ? (
-              <div>
-                {' '}
-                <span className='text-left'>{user.patient_ID}</span>
-                <span className='text-left'>{user.patient_Number}</span>
-                <span className='text-left'>{user.pPInfo_FirstName}</span>
-                <span className='text-left'>{user.pPInfo_LastName}</span>
-                <span className='text-left'>{user.pPInfo_DOB_month}</span>
-                <span className='text-left'>{user.pPInfo_Email}</span>
-              </div>
-            ) : null}
-          </h4>
-
-          <h4 className='text-left'>
-            Message: {msg ? <span className='text-left'>{msg}</span> : null}
-          </h4>
-
-          <h4 className='text-left'>
-            Error: {error ? <span className='text-left'>{error}</span> : null}
-          </h4>
         </Col>
       </Row>
       <hr />

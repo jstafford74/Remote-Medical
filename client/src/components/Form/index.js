@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import API from '../../API/api'
+import API from '../../utils/API'
 
 function Form () {
   const [file, setFile] = useState(null)

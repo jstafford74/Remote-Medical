@@ -26,8 +26,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 // Add routes, both API and view
-//app.use(routes);
-
+app.use(routes);
 
 // if (app.get('env') === 'production') {
 //   // Use secure cookies in production (requires SSL/TLS)
@@ -38,7 +37,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(morgan("dev"));
 
 const storage = new GridFsStorage({
-  url: process.env.MONGO_URI,
+  url: process.env.MONGODB_URI,
   options: {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -75,8 +74,8 @@ app.post("/rmt/images",
   });
 
 
-function startUp() {
-    const conn = mongoose.createConnection(process.env.MONGO_URI,
+async function startUp() {
+    const conn = mongoose.createConnection(process.env.MONGODB_URI,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,

@@ -3,8 +3,8 @@ import { Container, Navbar, Col } from 'react-bootstrap'
 
 const Style = {
   navLink: {
-    color: 'white',
-    fontSize: '1.5rem'
+    color: 'black',
+    fontSize: '1.5rem',
   },
   navButton: {
     marginTop: '10px'
@@ -13,20 +13,20 @@ const Style = {
 
 const StickyNav = props => {
   return (
-    <Container fluid='md'>
+    <Container fluid='md sm'>
       <Navbar
-        variant='dark'
-        bg='dark'
+        variant='light'
+        bg='light'
         collapseOnSelect
-        expand='lg'
+        expand='lg sm md'
         sticky='top'
       >
-        <Col lg={4} className='d-md'>
+        <Col lg={4} className='d-md text-center'>
           <Navbar.Brand style={Style.navLink} href='/'>
             Secure Web Medical Portal
           </Navbar.Brand>
         </Col>
-
+        
         <Navbar.Toggle aria-controls='respnav' />
       </Navbar>
     </Container>

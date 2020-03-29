@@ -14,7 +14,7 @@ const Style = {
   }
 }
 
-const TeleDerm = ({ handleFormSubmit, values, props }) => {
+const TeleMed = ({ handleFormSubmit, values, props }) => {
   return (
     <Fragment>
       <Container fluid='md' className='text-center'>
@@ -59,4 +59,4 @@ const TeleDerm = ({ handleFormSubmit, values, props }) => {
   )
 }
 
-export default TeleDerm
+export default TeleMed
