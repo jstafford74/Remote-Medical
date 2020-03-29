@@ -15,5 +15,4 @@ export default {
         return axios.post("/rmt/images", data, config).then((res) => res.data
         ).catch((error) => { console.log(error) });
     }
-
 };

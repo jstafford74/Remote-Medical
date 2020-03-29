@@ -21,13 +21,13 @@ const TeleMed = ({ handleFormSubmit, values, props }) => {
         <Jumbotron id='main' style={Style.jumbo}>
           <h1 style={Style.header}>Remote Medical Treatment</h1>
           <h3>
-            <i class='fas fa-laptop-medical fa-7x'></i>
+            <i class='fas fa-laptop-medical fa-3x'></i>
           </h3>
           <h3>
-            <i class='fas fa-user-md fa-7x'></i>
+            <i class='fas fa-user-md fa-3x'></i>
           </h3>
           <h3>
-            <i class='fas fa-star-of-life fa-7x'></i>
+            <i class='fas fa-star-of-life fa-3x'></i>
           </h3>
           {/* <Row>
             <Col lg={4}>

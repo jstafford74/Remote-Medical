@@ -20,7 +20,7 @@ class App extends Component {
             <Route exact path="/" component={Splash} />
             <Route exact path="/rmt" component={Demo} />
             <Route path="/rmt/images" component={ImageDemo} />
-            <Route path="/telemed" component={TeleMed} />
+            <Route path="/rmt/telemed" component={TeleMed} />
             <Route component={NoMatch} />
           </Switch>
         </Router>

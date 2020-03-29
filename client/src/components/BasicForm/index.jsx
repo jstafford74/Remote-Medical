@@ -41,7 +41,7 @@ function BasicForm (props) {
   return (
     <Container fluid>
       <Row>
-        <Col md={8}>
+        <Col>
           <Card
             className='py2 my2'
             style={{
@@ -199,7 +199,7 @@ function BasicForm (props) {
                       </ListGroup>
                     </Card.Body>
                     <Card.Footer>
-                      <Button
+                      <Button 
                         type='submit'
                         style={{ width: 175 }}
                         size='lg'
@@ -209,7 +209,6 @@ function BasicForm (props) {
                         Submit
                       </Button>
                     </Card.Footer>
-                    <pre>{JSON.stringify(values)}</pre>
                   </fieldset>
                 </form>
               )}
