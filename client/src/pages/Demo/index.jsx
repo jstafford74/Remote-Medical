@@ -18,7 +18,7 @@ const Style = {
 }
 
 export default function Demo (props) {
-  // const [isVerified, ]
+  // const [isVerified, setVerified] = useState(false)
   return (
     <Container fluid='md' className='text-center'>
       <Jumbotron id='main'>
@@ -34,6 +34,7 @@ export default function Demo (props) {
         </h3>
         <hr />
         <BasicForm />
+        {/* {{ isVerified } ? <TeleMed /> : null} */}
       </Jumbotron>
       {/* {loggedIn ? <RFFormat /> : null} */}
     </Container>
