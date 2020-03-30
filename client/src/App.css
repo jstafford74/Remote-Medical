@@ -3,8 +3,9 @@
 }
 
 /* Fix for use only flexbox in content area */
+
 .next-steps .row {
-  margin-bottom: 0;
+  margin-bottom: 5;
 }
 
 .next-steps .col-md-5 {
