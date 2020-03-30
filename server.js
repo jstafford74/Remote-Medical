@@ -1,12 +1,8 @@
-const env = require("dotenv").config();
+require("dotenv").config();
 const express = require("express");
-
-const db = require("./models");
-const mongoose = require("mongoose");
 const routes = require("./routes");
 const morgan = require('morgan');
 const passport = require('passport');
-
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -26,6 +22,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 
+
 // if (app.get('env') === 'production') {
 //   // Use secure cookies in production (requires SSL/TLS)
 //   // sess.cookie.secure = true;
@@ -33,22 +30,6 @@ app.use(routes);
 // }
 
 app.use(morgan("dev"));
-
-
-
-mongoose.connect(process.env.MONGODB_URI,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true
-  });
-
-const conn = mongoose.connection;
-conn.on('error', console.error.bind(console, 'connection error:'));
-conn.once('open', function () {
-  console.log('-----------------Connected to MongoDB----------------------')
-
-});
 
 
 app.listen(PORT, function () {

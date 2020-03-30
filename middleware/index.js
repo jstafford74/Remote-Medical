@@ -2,7 +2,9 @@ require('dotenv').config()
 const crypto = require('crypto');
 const path = require('path');
 const GridFsStorage = require('multer-gridfs-storage');
-const multer = require('multer');
+const multer = require("multer");
+
+
 
 const storage = new GridFsStorage({
     url: process.env.MONGODB_URI,
@@ -18,7 +20,7 @@ const storage = new GridFsStorage({
                 }
                 const filename = buf.toString('hex') + path.extname(file.originalname);
                 const fileInfo = {
-                    filename: filename,
+                    filename: filename + Date.now(),
                     bucketName: 'uploads'
                 };
                 resolve(fileInfo);
@@ -27,6 +29,5 @@ const storage = new GridFsStorage({
     }
 })
 
-const upload = multer({ storage });
-
+const upload = ({ storage });
 module.exports = upload;
