@@ -20,7 +20,6 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(passport.initialize());
-// Serve up static assets (usually on heroku)
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -28,6 +27,21 @@ if (process.env.NODE_ENV === "production") {
   //   res.sendFile(path.resolve(__dirname, "build", "index.html"));
   // });
 }
+
+mongoose.connect(process.env.MONGODB_URI,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+  });
+
+const conn = mongoose.connection
+conn.once('open', function () {
+  console.log('-----------------Connected to MongoDB----------------------')
+  let gfs
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection('uploads');
+})
 
 //========Middleware===============///
 
@@ -55,6 +69,7 @@ const storage = new GridFsStorage({
 })
 
 const upload = multer({ storage });
+
 //======Controller=================///
 app.post("/rmt/images",
   upload.single("file"), (req, res, next) => {
@@ -103,25 +118,8 @@ app.get('/rmt/crm', (req, res) => {
 //   // app.set('trust proxy', 1);
 // }
 
-app.use(morgan("dev"));
 
 
-
-mongoose.connect(process.env.MONGODB_URI,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true
-  });
-
-const conn = mongoose.connection;
-conn.on('error', console.error.bind(console, 'connection error:'));
-conn.once('open', function () {
-  console.log('-----------------Connected to MongoDB----------------------')
-  let gfs
-  gfs = Grid(conn.db);
-  gfs.collection('uploads');
-});
 
 
 app.listen(PORT, function () {

@@ -45,17 +45,23 @@ const RFFormat = props => {
   return (
     <Container fluid='md'>
       {CRM === true ? (
-        <Link to='/CRM'>
-          <Button
-            type='button'
-            style={{ width: 175 }}
-            size='lg'
-            variant='primary'
-          >
-            <span>See Images</span>
-          </Button>
-        </Link>
+        <Col>
+          <h3>
+            Your image has been sent directly and securely to your doctor and
+            will be retrieved from the database in the clinic
+          </h3>
+        </Col>
       ) : (
+        // <Link to='/CRM'>
+        //   <Button
+        //     type='button'
+        //     style={{ width: 175 }}
+        //     size='lg'
+        //     variant='primary'
+        //   >
+        //     <span>See Images</span>
+        //   </Button>
+        // </Link>
         <Card
           className='py2 my4'
           style={{ border: 'black solid 1px', borderRadius: 10, marginTop: 5 }}

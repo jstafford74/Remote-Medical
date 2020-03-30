@@ -98,7 +98,7 @@ export default function Splash (props) {
           like scanning service enables a handsfree mode to automate the
           acquisition and distribution of high-quality physical examinations.
           Utilizing a secure wireless network, the Melanoscan camera arrays
-          surround the body and simultaneously capture images that care securely
+          surround the body and simultaneously capture images that are securely
           stored and then analyzed for variations in pigment and changes in spot
           sizes through time. Through the development process Dr. Rhett Drugge,
           M.D. and his team have assembled the technology to quickly grab both

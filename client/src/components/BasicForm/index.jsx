@@ -42,11 +42,11 @@ function BasicForm (props) {
 
   return (
     <Container fluid>
-      <h4>
-        In order to demonstrate, use my credentials to authorize an secure
-        passwordless link from Auth0. In practice the database will be populated
-        upon sign up by the doctor with the most basic information. Only if the
-        patient exists in this databse will an authenticated link get sent.
+      <h4 className='text-left'>
+        Use my credentials to authorize a secure passwordless link from Auth0.
+        In practice the database will be populated upon sign up by the doctor
+        with the most basic information. Only if the patient exists in this
+        database will an authenticated link get sent.
       </h4>
       <Row>
         <Col md={8}>
