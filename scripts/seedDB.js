@@ -25,17 +25,21 @@ const demoListSeed = [
         patient_LastName: "stafford",
         patient_DOB: "1974-07-01",
         patient_Email: "jeremiah.b.stafford@gmail.com"
+    },
+    {
+        patient_ID: "0",
+        patient_MRN: "0",
+        patient_FirstName: "colin",
+        patient_LastName: "rudd",
+        patient_DOB: "1970-10-31",
+        patient_Email: "cnrudd@gmail.com"
     }
-
-
-
-]
+];
 
 async function seed() {
     try {
-        //   // clear DB
-        //   await db.List.remove({});
-        //   await db.User.remove({});
+        // clear DB
+        // await db.List.remove({});
         await db.List.collection.insertMany(demoListSeed);
 
         process.exit(0);
