@@ -27,7 +27,7 @@ const RFFormat = props => {
     setFile(fileItem)
     console.log(fileItem)
   }
-  const onSubmit = ()=>{
+  const onSubmit = async () => {
     // e.preventDefault()
     let data = new FormData()
     data.append('file', file)
@@ -37,8 +37,9 @@ const RFFormat = props => {
         'content-type': 'multipart/form-data'
       }
     }
-    console.log(data, config)
-    API.upload(data, config)
+
+    await API.upload(data, config)
+    alert('Image data has been uploaded to your Dr.')
   }
   return (
     <Container fluid='md'>

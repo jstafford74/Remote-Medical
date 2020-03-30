@@ -2,7 +2,7 @@ const options = {
     allowedConnections: ['email'],
     passwordlessMethod: 'link',
     auth: {
-        redirectUrl: process.env.AUTH0_REDIRECT_URL,
+        redirectUrl: 'http://localhost:3000/telemed',
         params: {
             scope: 'openid profile email'
         }
