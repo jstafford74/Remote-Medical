@@ -27,8 +27,8 @@ const RFFormat = props => {
     setFile(fileItem)
     console.log(fileItem)
   }
-  const handleUpload = e => {
-    e.preventDefault()
+  const onSubmit = ()=>{
+    // e.preventDefault()
     let data = new FormData()
     data.append('file', file)
     data.append('name', 'file')
@@ -50,10 +50,10 @@ const RFFormat = props => {
           Image Transmission Form
         </Card.Header>
         <Form
-          onSubmit={handleUpload}
+          onSubmit={onSubmit}
           initialValues={{}}
           render={({ handleSubmit, form, submitting, pristine, values }) => (
-            <fieldset>
+            <form onSubmit={handleSubmit}>
               <Card.Body>
                 <h2 className='text-muted'>Please Attach Image & Notes</h2>
                 <ListGroup variant='flush'>
@@ -308,7 +308,7 @@ const RFFormat = props => {
                   Reset
                 </Button>
               </Card.Footer>
-            </fieldset>
+            </form>
           )}
         />
       </Card>

@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(passport.initialize());
 // Serve up static assets (usually on heroku)
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
@@ -34,29 +35,30 @@ app.use(routes);
 app.use(morgan("dev"));
 
 
-async function startUp() {
-  mongoose.connect(process.env.MONGODB_URI,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true
-    })
-    .catch(error => handleError(error));
-  mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
-  mongoose.connection.once('open', async function () {
-    console.log('-----------------Connected to MongoDB----------------------')
+
+mongoose.connect(process.env.MONGODB_URI,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+  });
+
+const conn = mongoose.connection;
+conn.on('error', console.error.bind(console, 'connection error:'));
+conn.once('open', function () {
+  console.log('-----------------Connected to MongoDB----------------------')
+
+});
 
 
-    app.listen(PORT, function () {
-      console.log(
-        `==> API Server now listening on PORT ${PORT}!`
-      );
-
-    })
-  })
-}
+app.listen(PORT, function () {
+  console.log(
+    `==> API Server now listening on PORT ${PORT}!`
+  );
+})
 
 
 
 
-startUp()
+
+

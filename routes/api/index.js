@@ -1,9 +1,8 @@
 const router = require("express").Router();
-const passport = require('passport');
-
 const authRoutes = require("./auth");
+const imageRoutes = require("./images");
 
-// Book routes
 router.use("/auth", authRoutes);
+router.use("/images", imageRoutes);
 
 module.exports = router;

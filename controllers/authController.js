@@ -1,5 +1,4 @@
 const db = require("../models");
-console.log(db);
 
 module.exports = {
   checkAcct: function (req, res) {
