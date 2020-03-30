@@ -12,7 +12,7 @@ const morgan = require('morgan');
 const passport = require('passport');
 // const methodOverride = require('method-override');
 
-console.log(process.env)
+
 Grid.mongo = mongoose.mongo;
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -77,6 +77,25 @@ app.get("/rmt/auth/checkacct/:FirstName/:LastName/:email/:DOB", function (req, r
   )
 }
 )
+app.get('/rmt/crm', (req, res) => {
+  gfs.files.find().toArray((err, files) => {
+    // Files exist?
+    if (!files || files.length === 0) {
+      res.json({ files: false });
+    } else {
+      files.map(file => {
+        if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
+          file.isImage = true;
+
+        } else {
+          file.isImage = false;
+        }
+      });
+      res.send(files)
+    }
+
+  })
+})
 
 // if (app.get('env') === 'production') {
 //   // Use secure cookies in production (requires SSL/TLS)

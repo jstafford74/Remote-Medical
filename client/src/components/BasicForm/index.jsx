@@ -42,6 +42,12 @@ function BasicForm (props) {
 
   return (
     <Container fluid>
+      <h4>
+        In order to demonstrate, use my credentials to authorize an secure
+        passwordless link from Auth0. In practice the database will be populated
+        upon sign up by the doctor with the most basic information. Only if the
+        patient exists in this databse will an authenticated link get sent.
+      </h4>
       <Row>
         <Col md={8}>
           <Card
@@ -217,6 +223,12 @@ function BasicForm (props) {
               )}
             />
           </Card>
+        </Col>
+        <Col>
+          <h5 className='text-left'>First Name: Jeremiah </h5>
+          <h5 className='text-left'>Last Name: Stafford </h5>
+          <h5 className='text-left'>Email: jeremiah.b.stafford@gmail.com </h5>
+          <h5 className='text-left'>DOB: 1974-07-01</h5>
         </Col>
       </Row>
       <hr />

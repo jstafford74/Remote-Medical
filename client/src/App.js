@@ -4,6 +4,7 @@ import StickyNav from "./components/StickyNav";
 import Splash from "./pages/Splash";
 import Demo from "./pages/Demo";
 import TeleMed from "./pages/TeleMed";
+import CRM from "./pages/CRM";
 
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
           <Route exact path="/" component={Splash} />
           <Route exact path="/rmt" component={Demo} />
           <Route path="/telemed" component={TeleMed} />
+          <Route path="/CRM" component={CRM} />
         </Switch>
       </Router>
     </div>

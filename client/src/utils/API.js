@@ -10,5 +10,9 @@ export default {
     upload: function (data, config) {
         return axios.post("/rmt/images", data, config).then((res) => res.data
         ).catch((error) => { console.log(error) });
+    },
+    getImages: function () {
+        return axios.get("/rmt/crm").then((res) => res.data
+        ).catch((error) => { console.log(error) });
     }
 };
