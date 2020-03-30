@@ -45,12 +45,45 @@ const RFFormat = props => {
   return (
     <Container fluid='md'>
       {CRM === true ? (
-        <Col>
-          <h3>
-            Your image has been sent directly and securely to your doctor and
-            will be retrieved from the database in the clinic
-          </h3>
-        </Col>
+        <div>
+          <Row>
+            <Col>
+              <h3>
+                Your image has been sent directly and securely to your doctor
+                and will be retrieved from the database in the clinic
+              </h3>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <h3>Key Value Add</h3>
+              <ListGroup>
+                <ListGroup.Item>
+                  <h3>Safe, secure & distance patient screening</h3>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <h3>Authenticated passwordless sign-in through Auth0</h3>
+                </ListGroup.Item>
+
+                <ListGroup.Item>
+                  <h3>
+                    Advanced analytic engine embedded into Melanoscan image
+                    capture
+                  </h3>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <h3>
+                    Context of patient care and integrity of existing doctor
+                    patient relationships preserved
+                  </h3>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <h3>Simple, scalable, secure and performant design </h3>
+                </ListGroup.Item>
+              </ListGroup>
+            </Col>
+          </Row>
+        </div>
       ) : (
         // <Link to='/CRM'>
         //   <Button
