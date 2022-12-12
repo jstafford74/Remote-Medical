@@ -25,7 +25,7 @@
     "emailjs": "^2.2.0",
     "emailjs-com": "^2.4.1",
     "events": "^3.1.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-jwt": "^5.3.1",
     "express-session": "^1.17.0",
     "gridfs-stream": "^1.1.1",
